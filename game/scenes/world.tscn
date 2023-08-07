@@ -1,6 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://dual8mk60o6mj"]
+[gd_scene load_steps=24 format=3 uid="uid://dual8mk60o6mj"]
 
+[ext_resource type="Texture2D" uid="uid://cby1c2y55yl5q" path="res://textures/leaves_forest_ground_4k/textures/leaves_forest_ground_diff_4k.jpg" id="1_3ytsl"]
+[ext_resource type="Texture2D" uid="uid://ctehqhvarkojm" path="res://textures/leaves_forest_ground_4k/textures/leaves_forest_ground_arm_4k.jpg" id="2_w74e7"]
+[ext_resource type="Texture2D" uid="uid://dt3wrn4gtpdap" path="res://textures/leaves_forest_ground_4k/textures/leaves_forest_ground_disp_4k.png" id="3_kel7q"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="5_wn043"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="6_wlahh"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="7_grmxq"]
 [ext_resource type="PackedScene" uid="uid://cjx7ces7meaak" path="res://scenes/player.tscn" id="8_ur5ib"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="8_yycag"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/relax.gd" id="9_kfj8x"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="10_im7e1"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="11_ebajg"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="12_3xi6a"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="13_1bh1g"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vfhlh"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -15,6 +27,71 @@ sky = SubResource("Sky_kf2f5")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7gua3"]
+albedo_texture = ExtResource("1_3ytsl")
+roughness_texture = ExtResource("3_kel7q")
+roughness_texture_channel = 4
+normal_enabled = true
+normal_texture = ExtResource("2_w74e7")
+heightmap_enabled = true
+uv1_triplanar = true
+
+[sub_resource type="Resource" id="Resource_t3u4s"]
+script = ExtResource("7_grmxq")
+amount = 100
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_xfy37"]
+script = ExtResource("8_yycag")
+position = Vector3(0.15, 0.15, 0.15)
+rotation = Vector3(5, 360, 1)
+scale = Vector3(0.1, 0.1, 0.1)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_hxujx"]
+script = ExtResource("9_kfj8x")
+iterations = 3
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+use_computeshader = true
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_t4547"]
+script = ExtResource("10_im7e1")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 5.0
+ray_offset = 5.0
+remove_points_on_miss = true
+align_with_collision_normal = true
+max_slope = 90.0
+collision_mask = 1
+exclude_mask = 0
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_u2ydk"]
+script = ExtResource("6_wlahh")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_t3u4s"), SubResource("Resource_xfy37"), SubResource("Resource_hxujx"), SubResource("Resource_t4547")])
+
+[sub_resource type="Resource" id="Resource_li1p8"]
+script = ExtResource("13_1bh1g")
+size = Vector3(1, 1, 1)
+
 [node name="world" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -25,7 +102,36 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 shadow_enabled = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
+material_override = SubResource("StandardMaterial3D_7gua3")
 use_collision = true
 size = Vector3(30, 0, 30)
 
 [node name="player" parent="." instance=ExtResource("8_ur5ib")]
+
+[node name="ProtonScatter" type="Node3D" parent="."]
+script = ExtResource("5_wn043")
+render_mode = 1
+modifier_stack = SubResource("Resource_u2ydk")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+
+[node name="ScatterItem" type="Node3D" parent="ProtonScatter"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+script = ExtResource("11_ebajg")
+proportion = 1000
+source_scale_multiplier = 1.5
+path = "res://addons/proton_scatter/demos/assets/pine_tree.tscn"
+
+[node name="ScatterItem2" type="Node3D" parent="ProtonScatter"]
+script = ExtResource("11_ebajg")
+proportion = 50
+path = "res://addons/proton_scatter/demos/assets/small_rock.tscn"
+
+[node name="ScatterItem3" type="Node3D" parent="ProtonScatter"]
+script = ExtResource("11_ebajg")
+path = "res://addons/proton_scatter/demos/assets/bush.tscn"
+
+[node name="ScatterShape" type="Node3D" parent="ProtonScatter"]
+transform = Transform3D(30, 0, -8.94069e-07, 0, 30, 0, 8.94069e-07, 0, 30, 0, 0, 0)
+script = ExtResource("12_3xi6a")
+shape = SubResource("Resource_li1p8")

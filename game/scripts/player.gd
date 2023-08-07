@@ -57,7 +57,7 @@ func _physics_process(delta):
 		else:
 			if animation_player.current_animation != "walking":
 				animation_player.play("walking")
-			if !is_locked:
+		if !is_locked:
 				visuals.look_at(position + direction)
 			
 		velocity.x = direction.x * SPEED
