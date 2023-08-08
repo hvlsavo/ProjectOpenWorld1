@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq82s4dqx0cgt"]
+
+[ext_resource type="ArrayMesh" uid="uid://co46jcggjrjgc" path="res://models/character.obj" id="2_ywct4"]
+
+[sub_resource type="GDScript" id="GDScript_evs7x"]
+script/source = "extends CharacterBody3D
+
+@onready var nav_agent = $NavigationAgent3D
+
+var SPEED = 3.0
+
+func _physics_process(_delta):
+	
+	var current_location = global_transform.origin
+	var next_location = nav_agent.get_next_path_position()
+	var new_velocity = (next_location - current_location).normalized() * SPEED
+	look_at(next_location)
+	nav_agent.set_velocity(new_velocity)
+	
+	velocity = velocity.move_toward(new_velocity, .25)
+	move_and_slide()
+
+func update_target_location(target_location):
+	nav_agent.set_target_position(target_location)
+
+
+func _on_navigation_agent_3d_target_reached():
+	print(\"in range\")
+
+
+func _on_navigation_agent_3d_velocity_computed(safe_velocity):
+	velocity = velocity.move_toward(safe_velocity, .25)
+	move_and_slide()
+"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yttq6"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q2x2u"]
+
+[node name="Enemy" type="CharacterBody3D" groups=["enemies"]]
+script = SubResource("GDScript_evs7x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.01, 0, -8.74228e-10, 0, 0.01, 0, 8.74228e-10, 0, -0.01, 0, 0, 0)
+mesh = ExtResource("2_ywct4")
+surface_material_override/0 = SubResource("StandardMaterial3D_yttq6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_q2x2u")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." groups=["enemies"]]
+path_height_offset = 0.1

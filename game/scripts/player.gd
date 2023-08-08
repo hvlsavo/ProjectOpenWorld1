@@ -10,6 +10,9 @@ const JUMP_VELOCITY = 4.0
 var walking_speed = 3.5
 var running_speed = 4.5
 
+func _ready():
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
 var running = false
 
 var is_locked = false
@@ -20,15 +23,13 @@ var is_locked = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _input(event):
 	if event is InputEventMouseMotion:
 		visuals.rotate_y(deg_to_rad(event.relative.x*sens_horizontal))
 		rotate_y(deg_to_rad(-event.relative.x*sens_horizontal))
 		camera_mount.rotate_x(deg_to_rad(-event.relative.y*sens_vertical))
-		
+
 
 func _physics_process(delta):
 	
@@ -45,6 +46,7 @@ func _physics_process(delta):
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
