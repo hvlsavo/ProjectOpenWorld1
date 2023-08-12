@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dual8mk60o6mj"]
+[gd_scene load_steps=17 format=3 uid="uid://dual8mk60o6mj"]
 
 [ext_resource type="Texture2D" uid="uid://cby1c2y55yl5q" path="res://textures/leaves_forest_ground_4k/textures/leaves_forest_ground_diff_4k.jpg" id="1_3ytsl"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_wqwtg"]
@@ -7,6 +7,9 @@
 [ext_resource type="Resource" path="res://terrain/data.hterrain" id="5_nimru"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="6_h55q1"]
 [ext_resource type="PackedScene" uid="uid://cjx7ces7meaak" path="res://scenes/player.tscn" id="8_ur5ib"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_detail_layer.gd" id="9_veg5h"]
+[ext_resource type="Texture2D" uid="uid://drmmcy11y7mho" path="res://addons/proton_scatter/demos/assets/textures/t_leaves_1.png" id="10_36fqa"]
+[ext_resource type="Texture2D" uid="uid://6jmdwj3vn6m0" path="res://addons/zylann.hterrain/tools/icons/icon_detail_layer_node.svg" id="11_1d8ix"]
 [ext_resource type="PackedScene" uid="uid://k5fn5ycle3rt" path="res://scenes/enemy.tscn" id="15_e5dx7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vfhlh"]
@@ -71,3 +74,13 @@ shader_params/u_ground_uv_scale = 20
 shader_params/u_depth_blending = true
 shader_params/u_triplanar = null
 shader_params/u_tile_reduction = null
+
+[node name="HTerrainDetailLayer" type="Node3D" parent="NavigationRegion3D/HTerrain"]
+script = ExtResource("9_veg5h")
+texture = ExtResource("10_36fqa")
+shader_params/u_globalmap_tint_bottom = null
+shader_params/u_globalmap_tint_top = null
+shader_params/u_bottom_ao = null
+shader_params/u_instance_scale = null
+shader_params/u_roughness = null
+metadata/_editor_icon = ExtResource("11_1d8ix")
