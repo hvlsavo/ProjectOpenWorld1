@@ -1,6 +1,6 @@
 extends Node3D
 
-class_name Main
+class_name Game_Main
 
 @export var PlayerPack: PackedScene
 @export var NpcsPack: Array[PackedScene]

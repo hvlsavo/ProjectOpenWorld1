@@ -1,4 +1,4 @@
-extends CharacterBody3D
+extends EntitieBase
 
 @onready var player_model = $PlayerModel
 @onready var LookAtObject = $LookAtObject
@@ -11,11 +11,6 @@ const JUMP_VELOCITY = 4.0
 var walking_speed = 3.5
 var running_speed = 4.5
 
-var lerpSpeed = 0.15
-
-func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
 var running = false
 
 var is_locked = false
@@ -26,6 +21,12 @@ var is_locked = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+func SetDefaults():
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	maxHp = 100
+	Hp = 100
+	ChangeState("State_Idle")
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -34,7 +35,7 @@ func _input(event):
 		camera_mount.rotate_x(deg_to_rad(-event.relative.y*sens_vertical))
 
 
-func _physics_process(delta):
+func State_Idle():
 	var BlendNumber: float = 0
 	if Input.is_action_pressed("run"):
 		SPEED = running_speed
@@ -44,7 +45,7 @@ func _physics_process(delta):
 		running = false
 
 	if not is_on_floor():
-		velocity.y -= gravity * delta
+		velocity.y -= gravity * deltaCheck
 
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
@@ -61,11 +62,11 @@ func _physics_process(delta):
 		LookAtObject.look_at(position + direction)
 		var Rot: Vector3 = player_model.rotation
 		var DirRot: Vector3 = LookAtObject.rotation
-		player_model.rotation = Vector3(0, lerp_angle(Rot.y, DirRot.y, lerpSpeed) , 0)
+		player_model.rotation = Vector3(0, lerp_angle(Rot.y, DirRot.y, 0.08) , 0)
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	move_and_slide()
-	animation_tree.set("parameters/StateMachine/BlendSpace1D/blend_position", lerp(animation_tree.get("parameters/StateMachine/BlendSpace1D/blend_position"), BlendNumber, 0.1))
+	animation_tree.set("parameters/StateMachine/BlendSpace1D/blend_position", lerp(animation_tree.get("parameters/StateMachine/BlendSpace1D/blend_position"), BlendNumber, 0.07))
