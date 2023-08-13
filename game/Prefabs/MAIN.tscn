@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://dual8mk60o6mj"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_wqwtg"]
+[ext_resource type="PackedScene" uid="uid://w66ohqphe45s" path="res://Prefabs/player.tscn" id="8_ur5ib"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vfhlh"]
+sky_top_color = Color(0.278431, 0.419608, 0.811765, 1)
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_kf2f5"]
+sky_material = SubResource("ProceduralSkyMaterial_vfhlh")
+
+[sub_resource type="Environment" id="Environment_bncj4"]
+background_mode = 2
+sky = SubResource("Sky_kf2f5")
+tonemap_mode = 2
+glow_enabled = true
+fog_light_color = Color(0.529412, 0.807843, 0.921569, 1)
+fog_light_energy = 0.83
+fog_density = 0.001
+fog_height_density = 0.023
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mu83s"]
+size = Vector3(9.32283, 1, 13.4035)
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_wqwtg")
+PlayerPack = ExtResource("8_ur5ib")
+
+[node name="Effects" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Effects"]
+environment = SubResource("Environment_bncj4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Effects"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0.43258, -0.398122, 0.808933, -0.250748, 0.808702, 0.532097, 0, 0, 0)
+shadow_enabled = true
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="TestBox" type="CSGBox3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.568538, 0)
+size = Vector3(6.97027, 1, 9.70617)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/TestBox"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/TestBox/StaticBody3D"]
+shape = SubResource("BoxShape3D_mu83s")

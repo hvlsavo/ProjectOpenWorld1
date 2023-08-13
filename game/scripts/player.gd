@@ -1,14 +1,17 @@
 extends CharacterBody3D
 
-@onready var animation_player = $visuals/mixamo_base/AnimationPlayer
-@onready var visuals = $visuals
+@onready var player_model = $PlayerModel
+@onready var LookAtObject = $LookAtObject
 @onready var camera_mount = $camera_mount
+@onready var animation_tree = $AnimationTree
 
 var SPEED = 3.0
 const JUMP_VELOCITY = 4.0
 
 var walking_speed = 3.5
 var running_speed = 4.5
+
+var lerpSpeed = 0.15
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -26,13 +29,13 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		visuals.rotate_y(deg_to_rad(event.relative.x*sens_horizontal))
+		player_model.rotate_y(deg_to_rad(event.relative.x*sens_horizontal))
 		rotate_y(deg_to_rad(-event.relative.x*sens_horizontal))
 		camera_mount.rotate_x(deg_to_rad(-event.relative.y*sens_vertical))
 
 
 func _physics_process(delta):
-	
+	var BlendNumber: float = 0
 	if Input.is_action_pressed("run"):
 		SPEED = running_speed
 		running = true
@@ -47,28 +50,22 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		if running:
-			if animation_player.current_animation != "running":
-				animation_player.play("running")
-		else:
-			if animation_player.current_animation != "walking":
-				animation_player.play("walking")
-		if !is_locked:
-			visuals.look_at(position + direction)
-			
+		BlendNumber += 0.5
+		if(running):
+			BlendNumber += 0.5
+		LookAtObject.look_at(position + direction)
+		var Rot: Vector3 = player_model.rotation
+		var DirRot: Vector3 = LookAtObject.rotation
+		player_model.rotation = Vector3(0, lerp_angle(Rot.y, DirRot.y, lerpSpeed) , 0)
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
-		if animation_player.current_animation != "idle":
-			animation_player.play("idle")
-			
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-	if !is_locked:
-		move_and_slide()
+	move_and_slide()
+	animation_tree.set("parameters/StateMachine/BlendSpace1D/blend_position", lerp(animation_tree.get("parameters/StateMachine/BlendSpace1D/blend_position"), BlendNumber, 0.1))
