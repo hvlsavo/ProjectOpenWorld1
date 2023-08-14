@@ -1,25 +1,24 @@
 extends EntitieBase
 
+class_name Player_
+
 @onready var player_model = $PlayerModel
 @onready var LookAtObject = $LookAtObject
 @onready var camera_mount = $camera_mount
 @onready var animation_tree = $AnimationTree
 
-var SPEED = 3.0
-const JUMP_VELOCITY = 4.0
-
-var walking_speed = 3.5
-var running_speed = 4.5
-
-var running = false
-
-var is_locked = false
-
 @export var sens_horizontal = 0.3
 @export var sens_vertical = 0.3
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
+const JUMP_VELOCITY = 4.0
+
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var is_locked = false
+var running = false
+var running_speed = 4.5
+var SPEED = 3.0
+var walking_speed = 3.5
+
 
 func SetDefaults():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -28,12 +27,12 @@ func SetDefaults():
 	Hp = 100
 	ChangeState("State_Idle")
 
+
 func _input(event):
 	if event is InputEventMouseMotion:
 		player_model.rotate_y(deg_to_rad(event.relative.x*sens_horizontal))
 		rotate_y(deg_to_rad(-event.relative.x*sens_horizontal))
 		camera_mount.rotate_x(deg_to_rad(-event.relative.y*sens_vertical))
-
 
 func State_Idle():
 	var BlendNumber: float = 0
@@ -69,4 +68,4 @@ func State_Idle():
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	move_and_slide()
-	animation_tree.set("parameters/StateMachine/BlendSpace1D/blend_position", lerp(animation_tree.get("parameters/StateMachine/BlendSpace1D/blend_position"), BlendNumber, 0.07))
+	animation_tree.set("parameters/StateMachine/BlendSpace1D/blend_position", lerp(animation_tree.get("parameters/StateMachine/BlendSpace1D/blend_position"), BlendNumber, 0.20))

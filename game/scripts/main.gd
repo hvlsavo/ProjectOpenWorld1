@@ -1,22 +1,28 @@
 extends Node3D
 
-class_name Game_Main
+class_name Main_
 
-@export var PlayerPack: PackedScene
+@onready var SoundManager: SoundManager_ = $"[SoundManager]"
+
 @export var NpcsPack: Array[PackedScene]
+@export var PlayerPack: PackedScene
 
 var Player
 
 
-func Spawn_Npc(Spawn_Postion: Vector3, Spawn_Rotation: Vector3):
+func ready():
+	Load_World()
+
+
+
+func Load_MainMenu():
 	pass
 
 func Load_World():
 	Player = PlayerPack.instantiate()
 	add_child(Player)
 
-func Load_MainMenu():
-	pass
+func Spawn_Npc(Spawn_Position: Vector3, Spawn_Rotation: Vector3):
+	Player.position = Spawn_Position
+	Player.rotation = Spawn_Rotation
 
-func _ready():
-	Load_World()

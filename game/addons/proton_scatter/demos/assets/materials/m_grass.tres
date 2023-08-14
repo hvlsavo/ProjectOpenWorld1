@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c4mot1fo3siox"]
+
+[ext_resource type="Shader" path="res://shaders/grass.gdshader" id="1_sxyvm"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_sxyvm")
+shader_parameter/u_terrain_inverse_transform = null
+shader_parameter/u_terrain_normal_basis = null
+shader_parameter/u_view_distance = 100.0
+shader_parameter/u_globalmap_tint_bottom = null
+shader_parameter/u_globalmap_tint_top = null
+shader_parameter/u_bottom_ao = null
+shader_parameter/u_ambient_wind = null
+shader_parameter/u_instance_scale = Vector3(1, 1, 1)
+shader_parameter/u_roughness = 0.9
+shader_parameter/color = Color(0, 0.654902, 0, 1)
+shader_parameter/color2 = Color(0, 0, 0.670588, 1)
+shader_parameter/noiseScale = 20.0

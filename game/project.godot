@@ -22,7 +22,7 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/proton_scatter/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg")
 
 [input]
 

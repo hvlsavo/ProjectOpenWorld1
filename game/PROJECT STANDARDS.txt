@@ -1,0 +1,65 @@
+ORGANIZING WILL MAKE IT EASIER FOR THE DEV TO FIND FILES THEY NEED. EVEN
+THE CODE HAS BEEN ORGANIZED IN A WAY SO THAT CHUNKS THAT BELONG WITH 
+EACHOTHER ARE TOGETHER. VARIABLES ARE ORGANIZED BY LOAD TYPE AND 
+ALPHABETICAL ORDER.
+
+FILES SHOULD BE EASIER CUZ AALL YOU GOTTA DO IS SEND THE FILE TO THE MAIN 
+GUY AND NAME IT PROPERLY SO HE CAN FIND IT LATER WHEN THINGS GET TOO BIG 
+FOR A SIMPLE GLANCE. HE CAN JUST FIND IT USING SEARCH.
+
+CHECK BELOW FOR INSTRUCTIONS.
+
+
+ADDING FILES
+ if you made a model place it in the models folder
+ if you made a texture place it in the textures folder
+ if you have sounds put it in the sounds folder
+ if you made music put it in the music folder
+ if you made a script put it in the scripts folder
+
+NAMING SCHEMES
+ make sure to name the file by type first then the name of the file
+	(models) "ENVIRONMENTAL_FILENAME.obj"
+		MODELS NAMING SCHEMES
+			"CHARACTER_FILENAME.gltf"
+			"ENVIRONMENT_FILENAME.obj"
+			"ITEM_FILENAME.obj"
+			"INTERACTABLE_FILENAME.obj"
+			"EEFECTS_FILENAME.obj"
+	(sounds) "ENVIRONMENTAL_FILENAME.obj"
+		SOUNDS NAMING SCHEMES
+			"UI_FILENAME.mp3"
+			"MUSIC_FILENAME.mp3"
+			"GAMEPLAY_FILENAME.mp3"
+			"VOICEOVERS_FILENAME.mp3"
+	(textures) "ENVIRONMENTAL_FILENAME.obj"
+		TEXTURES NAMING SCHEMES
+			"CHARACTER_FILENAME.png"
+			"ENVIRONMENT_FILENAME.png"
+			"ITEM_FILENAME.png"
+			"INTERACTABLE_FILENAME.png"
+			"EEFECTS_FILENAME.png"
+			"ATLAS_FILENAME.png"
+	(prefabs)
+		PREFABS NAMING SCHEMES
+			"CHARACTER_FILENAME.tscn"
+			"ENVIRONMENT_FILENAME.tscn"
+			"ITEM_FILENAME.tscn"
+			"INTERACTABLE_FILENAME.tscn"
+			"EEFECTS_FILENAME.tscn"
+			"UI_FILENAME.tscn"
+	(scripts)
+		SCRIPTS NAMING SCHEMES
+			"player.gd"
+			"main.gd"
+			"EntitieBase.gd"
+			"ItemBase.gd"
+			"ParticleBase.gd"
+			"ProjectileBase.gd"
+			"SoundPlayer.gd"
+			
+			"Entitie_FILENAME.gd"
+			"Projectile_FILENAME.gd"
+			"Particle_FILENAME.gd"
+			"Item_FILENAME.gd"
+			"UI_FILENAME.gd"
