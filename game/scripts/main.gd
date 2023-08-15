@@ -1,6 +1,4 @@
 extends Node3D
-#hmmmm idk what to put here
-#n word
 class_name Mainio_
 
 @onready var SoundManager: SoundManager_ = $"[SoundManager]"
