@@ -3,10 +3,13 @@
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_0fbhj"]
 noise_type = 3
 seed = 2
-fractal_type = 2
+frequency = 0.0171
+fractal_octaves = 6
+fractal_lacunarity = 2.07
+fractal_gain = 0.53
 
 [resource]
 seamless = true
 as_normal_map = true
-bump_strength = 3.0
+bump_strength = 4.0
 noise = SubResource("FastNoiseLite_0fbhj")
