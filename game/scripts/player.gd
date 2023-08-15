@@ -16,9 +16,9 @@ const JUMP_VELOCITY = 4.0
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var is_locked = false
 var running = false
-var running_speed = 4.5
+var running_speed = 4.0
 var SPEED = 3.0
-var walking_speed = 3.5
+var walking_speed = 1.0
 
 
 func SetDefaults():
@@ -62,11 +62,11 @@ func State_Idle():
 		LookAtObject.look_at(position + direction)
 		var Rot: Vector3 = player_model.rotation
 		var DirRot: Vector3 = LookAtObject.rotation
-		player_model.rotation = Vector3(0, lerp_angle(Rot.y, DirRot.y, 0.08) , 0)
+		player_model.rotation = Vector3(0, lerp_angle(Rot.y, DirRot.y, 0.09) , 0)
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	move_and_slide()
-	animation_tree.set("parameters/StateMachine/BlendSpace1D/blend_position", lerp(animation_tree.get("parameters/StateMachine/BlendSpace1D/blend_position"), BlendNumber, 0.20))
+	animation_tree.set("parameters/StateMachine/BlendSpace1D/blend_position", lerp(animation_tree.get("parameters/StateMachine/BlendSpace1D/blend_position"), BlendNumber, 0.18))
