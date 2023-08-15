@@ -1,7 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://cakvpame00eeu"]
+[gd_scene load_steps=16 format=3 uid="uid://cakvpame00eeu"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_iq37k"]
-[ext_resource type="PackedScene" uid="uid://w66ohqphe45s" path="res://prefabs/player.tscn" id="2_ho2lh"]
+[ext_resource type="PackedScene" uid="uid://w66ohqphe45s" path="res://Prefabs/player.tscn" id="2_ho2lh"]
 [ext_resource type="Script" path="res://scripts/SoundPlayer.gd" id="3_e4xpt"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="4_qpsjc"]
 [ext_resource type="Resource" path="res://terrain/data.hterrain" id="5_4l71y"]
@@ -27,6 +27,10 @@ glow_enabled = true
 script = ExtResource("6_ya8ho")
 mode = 0
 textures = [[], []]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ics7p"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_cy7s4"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_iq37k")
@@ -137,7 +141,19 @@ metadata/_editor_icon = ExtResource("8_vqphc")
 [node name="Water" parent="." instance=ExtResource("11_y2h2u")]
 transform = Transform3D(0.199874, 0.00710898, 2.11864e-10, -0.00710898, 0.199874, 5.9567e-09, 0, -5.96046e-09, 0.2, 5.624, 0, -0.16)
 
-[node name="player" parent="." instance=ExtResource("2_ho2lh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.70445, 0)
+[node name="Player_defaultSpawnPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.62729, 0)
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="Player_defaultSpawnPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99708, 0)
+mesh = SubResource("CapsuleMesh_ics7p")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Player_defaultSpawnPoint"]
+transform = Transform3D(-4.37114e-08, 4.37114e-08, -0.0560092, 1, 1.91069e-15, -2.44824e-09, 0, -1, -2.44824e-09, 0, 2.62308, -0.807796)
+mesh = SubResource("PrismMesh_cy7s4")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="Player_defaultSpawnPoint"]
+transform = Transform3D(-4.37114e-08, 4.37114e-08, -0.0560092, 1, 1.91069e-15, -2.44824e-09, 0, -1, -2.44824e-09, 0, 2.62308, -1.95982)
+mesh = SubResource("PrismMesh_cy7s4")
 
 [connection signal="timeout" from="[SoundManager]/MusicPlayer/MusicTimer" to="[SoundManager]" method="_on_music_timer_timeout"]
