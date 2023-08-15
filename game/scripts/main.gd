@@ -1,5 +1,5 @@
 extends Node3D
-
+#kosovo is serbia
 class_name Mainio_
 
 @onready var SoundManager: SoundManager_ = $"[SoundManager]"
