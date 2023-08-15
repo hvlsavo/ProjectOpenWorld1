@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cakvpame00eeu"]
+[gd_scene load_steps=18 format=3 uid="uid://cakvpame00eeu"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_iq37k"]
 [ext_resource type="PackedScene" uid="uid://w66ohqphe45s" path="res://Prefabs/player.tscn" id="2_ho2lh"]
@@ -6,6 +6,10 @@
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="4_qpsjc"]
 [ext_resource type="Resource" path="res://terrain/data.hterrain" id="5_4l71y"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="6_ya8ho"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_detail_layer.gd" id="7_q3x4x"]
+[ext_resource type="Texture2D" uid="uid://c08mm3p2ehvr6" path="res://addons/proton_scatter/demos/assets/textures/t_grass.png" id="8_akd1r"]
+[ext_resource type="Shader" path="res://shaders/grass.gdshader" id="9_wrt7n"]
+[ext_resource type="Texture2D" uid="uid://6jmdwj3vn6m0" path="res://addons/zylann.hterrain/tools/icons/icon_detail_layer_node.svg" id="10_k5dlq"]
 [ext_resource type="PackedScene" uid="uid://ts6rwvxartew" path="res://scenes/WaterPlane.tscn" id="11_y2h2u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rgf3a"]
@@ -105,7 +109,7 @@ one_shot = true
 [node name="[Environment]" type="Node3D" parent="."]
 
 [node name="HTerrain" type="Node3D" parent="[Environment]"]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 script = ExtResource("4_qpsjc")
 ambient_wind = 0.285
 centered = true
@@ -125,11 +129,27 @@ shader_params/u_depth_blending = true
 shader_params/u_triplanar = null
 shader_params/u_tile_reduction = null
 
+[node name="HTerrainDetailLayer" type="Node3D" parent="[Environment]/HTerrain"]
+script = ExtResource("7_q3x4x")
+texture = ExtResource("8_akd1r")
+custom_shader = ExtResource("9_wrt7n")
+cast_shadow = 0
+shader_params/u_globalmap_tint_bottom = null
+shader_params/u_globalmap_tint_top = null
+shader_params/u_bottom_ao = null
+shader_params/u_instance_scale = null
+shader_params/u_roughness = null
+shader_params/color = Color(0.0980392, 0.623529, 0.101961, 1)
+shader_params/color2 = Color(0.12549, 0.803922, 0.129412, 1)
+shader_params/noiseScale = null
+shader_params/noise = null
+metadata/_editor_icon = ExtResource("10_k5dlq")
+
 [node name="Water" parent="." instance=ExtResource("11_y2h2u")]
-transform = Transform3D(0.199874, 0.00710898, 2.11864e-10, -0.00710898, 0.199874, 5.9567e-09, 0, -5.96046e-09, 0.2, 5.624, 0.391705, 2.84)
+transform = Transform3D(0.199874, 0.00710898, 2.11864e-10, -0.00710898, 0.199874, 5.9567e-09, 0, -5.96046e-09, 0.2, 5.624, -18.8438, 2.84)
 
 [node name="Player_defaultSpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.46764, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.0669, 19.2712, 0)
 
 [node name="CSGMesh3D3" type="CSGMesh3D" parent="Player_defaultSpawnPoint"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99708, 0)
