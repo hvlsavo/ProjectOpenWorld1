@@ -12,18 +12,21 @@
 [ext_resource type="Texture2D" uid="uid://6jmdwj3vn6m0" path="res://addons/zylann.hterrain/tools/icons/icon_detail_layer_node.svg" id="10_k5dlq"]
 [ext_resource type="PackedScene" uid="uid://ts6rwvxartew" path="res://scenes/WaterPlane.tscn" id="11_y2h2u"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rgf3a"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y5m3s"]
+sky_top_color = Color(0.196078, 0.694118, 0.831373, 1)
+sky_horizon_color = Color(0.160784, 0.65098, 0.72549, 1)
+sky_curve = 0.172305
+ground_bottom_color = Color(0.0235294, 0.513726, 0.843137, 1)
+ground_horizon_color = Color(0.0546875, 0.640625, 0.917969, 1)
 
-[sub_resource type="Sky" id="Sky_3dynk"]
-sky_material = SubResource("ProceduralSkyMaterial_rgf3a")
+[sub_resource type="Sky" id="Sky_5t8ij"]
+sky_material = SubResource("ProceduralSkyMaterial_y5m3s")
 
 [sub_resource type="Environment" id="Environment_hio6s"]
 background_mode = 2
-sky = SubResource("Sky_3dynk")
+sky = SubResource("Sky_5t8ij")
 tonemap_mode = 2
-glow_enabled = true
+volumetric_fog_density = 0.0167
 
 [sub_resource type="Resource" id="Resource_28vvb"]
 script = ExtResource("6_ya8ho")
@@ -38,12 +41,12 @@ textures = [[], []]
 script = ExtResource("1_iq37k")
 PlayerPack = ExtResource("2_ho2lh")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, -0.330678, 0.87105, 0.363215, -0.375041, 0.231883, -0.897538, 0, 0, 0)
-shadow_enabled = true
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_hio6s")
+
+[node name="Sun" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(-0.811388, 0.386138, 0.438803, 0.579987, 0.438677, 0.686424, 0.0725614, 0.811456, -0.579892, 0, 0, 0)
+shadow_enabled = true
 
 [node name="[SoundManager]" type="Node3D" parent="."]
 script = ExtResource("3_e4xpt")
