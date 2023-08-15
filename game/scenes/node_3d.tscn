@@ -1,37 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://cakvpame00eeu"]
+[gd_scene load_steps=7 format=3 uid="uid://cakvpame00eeu"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_iq37k"]
 [ext_resource type="PackedScene" uid="uid://w66ohqphe45s" path="res://Prefabs/player.tscn" id="2_ho2lh"]
-[ext_resource type="Script" path="res://scripts/SoundPlayer.gd" id="3_e4xpt"]
-[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="4_qpsjc"]
-[ext_resource type="Resource" path="res://terrain/data.hterrain" id="5_4l71y"]
-[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="6_ya8ho"]
-[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_detail_layer.gd" id="7_q3x4x"]
-[ext_resource type="Texture2D" uid="uid://c08mm3p2ehvr6" path="res://addons/proton_scatter/demos/assets/textures/t_grass.png" id="8_akd1r"]
-[ext_resource type="Shader" path="res://shaders/grass.gdshader" id="9_wrt7n"]
-[ext_resource type="Texture2D" uid="uid://6jmdwj3vn6m0" path="res://addons/zylann.hterrain/tools/icons/icon_detail_layer_node.svg" id="10_k5dlq"]
-[ext_resource type="PackedScene" uid="uid://ts6rwvxartew" path="res://scenes/WaterPlane.tscn" id="11_y2h2u"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y5m3s"]
-sky_top_color = Color(0.196078, 0.694118, 0.831373, 1)
-sky_horizon_color = Color(0.160784, 0.65098, 0.72549, 1)
-sky_curve = 0.172305
-ground_bottom_color = Color(0.0235294, 0.513726, 0.843137, 1)
-ground_horizon_color = Color(0.0546875, 0.640625, 0.917969, 1)
-
-[sub_resource type="Sky" id="Sky_5t8ij"]
-sky_material = SubResource("ProceduralSkyMaterial_y5m3s")
-
-[sub_resource type="Environment" id="Environment_hio6s"]
-background_mode = 2
-sky = SubResource("Sky_5t8ij")
-tonemap_mode = 2
-volumetric_fog_density = 0.0167
-
-[sub_resource type="Resource" id="Resource_28vvb"]
-script = ExtResource("6_ya8ho")
-mode = 0
-textures = [[], []]
+[ext_resource type="PackedScene" uid="uid://dxbjua108gudg" path="res://Prefabs/[sound_manager].tscn" id="3_u3mnl"]
+[ext_resource type="PackedScene" uid="uid://6l70qro1jy6k" path="res://Prefabs/[environment].tscn" id="4_haxeh"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ics7p"]
 
@@ -41,115 +13,9 @@ textures = [[], []]
 script = ExtResource("1_iq37k")
 PlayerPack = ExtResource("2_ho2lh")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_hio6s")
+[node name="[SoundManager]" parent="." instance=ExtResource("3_u3mnl")]
 
-[node name="Sun" type="DirectionalLight3D" parent="WorldEnvironment"]
-transform = Transform3D(-0.811388, 0.386138, 0.438803, 0.579987, 0.438677, 0.686424, 0.0725614, 0.811456, -0.579892, 0, 0, 0)
-shadow_enabled = true
-
-[node name="[SoundManager]" type="Node3D" parent="."]
-script = ExtResource("3_e4xpt")
-
-[node name=">>3dSounds" type="Node3D" parent="[SoundManager]"]
-
-[node name="A1" type="AudioStreamPlayer3D" parent="[SoundManager]/>>3dSounds"]
-
-[node name="A2" type="AudioStreamPlayer3D" parent="[SoundManager]/>>3dSounds"]
-
-[node name="A3" type="AudioStreamPlayer3D" parent="[SoundManager]/>>3dSounds"]
-
-[node name="A4" type="AudioStreamPlayer3D" parent="[SoundManager]/>>3dSounds"]
-
-[node name="A5" type="AudioStreamPlayer3D" parent="[SoundManager]/>>3dSounds"]
-
-[node name="A6" type="AudioStreamPlayer3D" parent="[SoundManager]/>>3dSounds"]
-
-[node name="A7" type="AudioStreamPlayer3D" parent="[SoundManager]/>>3dSounds"]
-
-[node name="A8" type="AudioStreamPlayer3D" parent="[SoundManager]/>>3dSounds"]
-
-[node name="A9" type="AudioStreamPlayer3D" parent="[SoundManager]/>>3dSounds"]
-
-[node name="A10" type="AudioStreamPlayer3D" parent="[SoundManager]/>>3dSounds"]
-
-[node name="A11" type="AudioStreamPlayer3D" parent="[SoundManager]/>>3dSounds"]
-
-[node name="A12" type="AudioStreamPlayer3D" parent="[SoundManager]/>>3dSounds"]
-
-[node name="A13" type="AudioStreamPlayer3D" parent="[SoundManager]/>>3dSounds"]
-
-[node name="A14" type="AudioStreamPlayer3D" parent="[SoundManager]/>>3dSounds"]
-
-[node name="A15" type="AudioStreamPlayer3D" parent="[SoundManager]/>>3dSounds"]
-
-[node name="A16" type="AudioStreamPlayer3D" parent="[SoundManager]/>>3dSounds"]
-
-[node name="A17" type="AudioStreamPlayer3D" parent="[SoundManager]/>>3dSounds"]
-
-[node name="A18" type="AudioStreamPlayer3D" parent="[SoundManager]/>>3dSounds"]
-
-[node name="A19" type="AudioStreamPlayer3D" parent="[SoundManager]/>>3dSounds"]
-
-[node name="A20" type="AudioStreamPlayer3D" parent="[SoundManager]/>>3dSounds"]
-
-[node name="A21" type="AudioStreamPlayer3D" parent="[SoundManager]/>>3dSounds"]
-
-[node name="A22" type="AudioStreamPlayer3D" parent="[SoundManager]/>>3dSounds"]
-
-[node name="A23" type="AudioStreamPlayer3D" parent="[SoundManager]/>>3dSounds"]
-
-[node name="A24" type="AudioStreamPlayer3D" parent="[SoundManager]/>>3dSounds"]
-
-[node name="UISoundPlayer" type="AudioStreamPlayer" parent="[SoundManager]"]
-
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="[SoundManager]"]
-bus = &"MusicMaster"
-
-[node name="MusicTimer" type="Timer" parent="[SoundManager]/MusicPlayer"]
-one_shot = true
-
-[node name="[Environment]" type="Node3D" parent="."]
-
-[node name="HTerrain" type="Node3D" parent="[Environment]"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-script = ExtResource("4_qpsjc")
-ambient_wind = 0.285
-centered = true
-_terrain_data = ExtResource("5_4l71y")
-chunk_size = 32
-collision_enabled = true
-collision_layer = 1
-collision_mask = 1
-shader_type = "Classic4Lite"
-custom_shader = null
-custom_globalmap_shader = null
-texture_set = SubResource("Resource_28vvb")
-render_layers = 1
-cast_shadow = 0
-shader_params/u_ground_uv_scale = 20
-shader_params/u_depth_blending = true
-shader_params/u_triplanar = null
-shader_params/u_tile_reduction = null
-
-[node name="HTerrainDetailLayer" type="Node3D" parent="[Environment]/HTerrain"]
-script = ExtResource("7_q3x4x")
-texture = ExtResource("8_akd1r")
-custom_shader = ExtResource("9_wrt7n")
-cast_shadow = 0
-shader_params/u_globalmap_tint_bottom = null
-shader_params/u_globalmap_tint_top = null
-shader_params/u_bottom_ao = null
-shader_params/u_instance_scale = null
-shader_params/u_roughness = null
-shader_params/color = Color(0.0980392, 0.623529, 0.101961, 1)
-shader_params/color2 = Color(0.12549, 0.803922, 0.129412, 1)
-shader_params/noiseScale = null
-shader_params/noise = null
-metadata/_editor_icon = ExtResource("10_k5dlq")
-
-[node name="Water" parent="." instance=ExtResource("11_y2h2u")]
-transform = Transform3D(0.199874, 0.00710898, 2.11864e-10, -0.00710898, 0.199874, 5.9567e-09, 0, -5.96046e-09, 0.2, 5.624, -18.8438, 2.84)
+[node name="[Environment]" parent="." instance=ExtResource("4_haxeh")]
 
 [node name="Player_defaultSpawnPoint" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.0669, 19.2712, 0)
@@ -165,5 +31,3 @@ mesh = SubResource("PrismMesh_cy7s4")
 [node name="CSGMesh3D2" type="CSGMesh3D" parent="Player_defaultSpawnPoint"]
 transform = Transform3D(-4.37114e-08, 4.37114e-08, -0.0560092, 1, 1.91069e-15, -2.44824e-09, 0, -1, -2.44824e-09, 0, 2.62308, -1.95982)
 mesh = SubResource("PrismMesh_cy7s4")
-
-[connection signal="timeout" from="[SoundManager]/MusicPlayer/MusicTimer" to="[SoundManager]" method="_on_music_timer_timeout"]

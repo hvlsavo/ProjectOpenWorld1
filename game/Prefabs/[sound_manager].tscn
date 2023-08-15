@@ -1,0 +1,66 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxbjua108gudg"]
+
+[ext_resource type="Script" path="res://scripts/SoundPlayer.gd" id="1_isuf8"]
+
+[node name="[SoundManager]" type="Node3D"]
+script = ExtResource("1_isuf8")
+
+[node name=">>3dSounds" type="Node3D" parent="."]
+
+[node name="A1" type="AudioStreamPlayer3D" parent=">>3dSounds"]
+
+[node name="A2" type="AudioStreamPlayer3D" parent=">>3dSounds"]
+
+[node name="A3" type="AudioStreamPlayer3D" parent=">>3dSounds"]
+
+[node name="A4" type="AudioStreamPlayer3D" parent=">>3dSounds"]
+
+[node name="A5" type="AudioStreamPlayer3D" parent=">>3dSounds"]
+
+[node name="A6" type="AudioStreamPlayer3D" parent=">>3dSounds"]
+
+[node name="A7" type="AudioStreamPlayer3D" parent=">>3dSounds"]
+
+[node name="A8" type="AudioStreamPlayer3D" parent=">>3dSounds"]
+
+[node name="A9" type="AudioStreamPlayer3D" parent=">>3dSounds"]
+
+[node name="A10" type="AudioStreamPlayer3D" parent=">>3dSounds"]
+
+[node name="A11" type="AudioStreamPlayer3D" parent=">>3dSounds"]
+
+[node name="A12" type="AudioStreamPlayer3D" parent=">>3dSounds"]
+
+[node name="A13" type="AudioStreamPlayer3D" parent=">>3dSounds"]
+
+[node name="A14" type="AudioStreamPlayer3D" parent=">>3dSounds"]
+
+[node name="A15" type="AudioStreamPlayer3D" parent=">>3dSounds"]
+
+[node name="A16" type="AudioStreamPlayer3D" parent=">>3dSounds"]
+
+[node name="A17" type="AudioStreamPlayer3D" parent=">>3dSounds"]
+
+[node name="A18" type="AudioStreamPlayer3D" parent=">>3dSounds"]
+
+[node name="A19" type="AudioStreamPlayer3D" parent=">>3dSounds"]
+
+[node name="A20" type="AudioStreamPlayer3D" parent=">>3dSounds"]
+
+[node name="A21" type="AudioStreamPlayer3D" parent=">>3dSounds"]
+
+[node name="A22" type="AudioStreamPlayer3D" parent=">>3dSounds"]
+
+[node name="A23" type="AudioStreamPlayer3D" parent=">>3dSounds"]
+
+[node name="A24" type="AudioStreamPlayer3D" parent=">>3dSounds"]
+
+[node name="UISoundPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"MusicMaster"
+
+[node name="MusicTimer" type="Timer" parent="MusicPlayer"]
+one_shot = true
+
+[connection signal="timeout" from="MusicPlayer/MusicTimer" to="." method="_on_music_timer_timeout"]
