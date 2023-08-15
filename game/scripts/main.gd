@@ -1,6 +1,6 @@
 extends Node3D
 
-class_name Main_
+class_name Mainio_
 
 @onready var SoundManager: SoundManager_ = $"[SoundManager]"
 @onready var DefaultPlayerSpawn = $Player_defaultSpawnPoint
@@ -11,7 +11,7 @@ class_name Main_
 var Player
 
 
-func ready():
+func _ready():
 	Load_World()
 
 
@@ -20,13 +20,13 @@ func Load_MainMenu():
 	pass
 
 func Load_World():
-	DefaultPlayerSpawn.visible = false
 	Player = PlayerPack.instantiate()
 	add_child(Player)
 	Player.position = DefaultPlayerSpawn.position
 	Player.rotation = DefaultPlayerSpawn.rotation
+	DefaultPlayerSpawn.visible = false
+	print("LIFE IS WELL. GOD IS GOOD")
 
 func Spawn_Npc(Spawn_Position: Vector3, Spawn_Rotation: Vector3):
-	Player.position = Spawn_Position
-	Player.rotation = Spawn_Rotation
+	pass
 

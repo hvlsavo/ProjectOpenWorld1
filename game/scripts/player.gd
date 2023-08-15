@@ -6,6 +6,7 @@ class_name Player_
 @onready var LookAtObject = $LookAtObject
 @onready var camera_mount = $camera_mount
 @onready var animation_tree = $AnimationTree
+@onready var PlayerCamera:Camera3D = $camera_mount/Camera3D
 
 @export var sens_horizontal = 0.3
 @export var sens_vertical = 0.3
@@ -22,7 +23,7 @@ var walking_speed = 3.5
 
 func SetDefaults():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
+	PlayerCamera.current = true
 	maxHp = 100
 	Hp = 100
 	ChangeState("State_Idle")

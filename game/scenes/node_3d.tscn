@@ -142,7 +142,7 @@ metadata/_editor_icon = ExtResource("8_vqphc")
 transform = Transform3D(0.199874, 0.00710898, 2.11864e-10, -0.00710898, 0.199874, 5.9567e-09, 0, -5.96046e-09, 0.2, 5.624, 0, -0.16)
 
 [node name="Player_defaultSpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.62729, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.46764, 0)
 
 [node name="CSGMesh3D3" type="CSGMesh3D" parent="Player_defaultSpawnPoint"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99708, 0)

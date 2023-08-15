@@ -5,7 +5,7 @@ class_name EntitieBase
 var CurrentState: String = "null"
 var deltaCheck = 0.001
 var Hp = 100
-var a_Main: Main_ = null
+var a_Main: Mainio_ = null
 var maxHp = 100
 
 
