@@ -1,0 +1,23 @@
+[gd_scene load_steps=7 format=3 uid="uid://brbj7btchit0p"]
+
+[ext_resource type="PackedScene" uid="uid://wa8sqan0pjai" path="res://models/PR_Mountain.fbx" id="1_pyhlo"]
+[ext_resource type="Texture2D" uid="uid://dgr20ruusoho1" path="res://textures/Mountain_basecolor.png" id="2_7yd4a"]
+[ext_resource type="Texture2D" uid="uid://f7uo2lleaxyb" path="res://textures/Mountain_height.png" id="3_1v5w0"]
+[ext_resource type="Texture2D" uid="uid://cgyt2w1kd0aq4" path="res://textures/Mountain_normal.png" id="4_uv2li"]
+[ext_resource type="Texture2D" uid="uid://tvdbw6wjcdhl" path="res://textures/Mountain_AO.png" id="5_65r6k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hofa3"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("2_7yd4a")
+roughness_texture = ExtResource("5_65r6k")
+normal_enabled = true
+normal_texture = ExtResource("4_uv2li")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_1v5w0")
+heightmap_flip_texture = true
+
+[node name="PR_Mountain" instance=ExtResource("1_pyhlo")]
+
+[node name="PR_Mountain_01_PR_Mountain_01" parent="RootNode" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_hofa3")
