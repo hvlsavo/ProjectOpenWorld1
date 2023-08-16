@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_iq37k"]
 [ext_resource type="PackedScene" uid="uid://w66ohqphe45s" path="res://Prefabs/player.tscn" id="2_ho2lh"]
-[ext_resource type="PackedScene" uid="uid://dxbjua108gudg" path="res://Prefabs/[sound_manager].tscn" id="3_u3mnl"]
-[ext_resource type="PackedScene" uid="uid://6l70qro1jy6k" path="res://Prefabs/[environment].tscn" id="4_haxeh"]
+[ext_resource type="PackedScene" path="res://Prefabs/[sound_manager].tscn" id="3_u3mnl"]
+[ext_resource type="PackedScene" uid="uid://dk3oukx7wexil" path="res://Prefabs/[environment].tscn" id="4_haxeh"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ics7p"]
 

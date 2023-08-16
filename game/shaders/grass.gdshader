@@ -117,3 +117,4 @@ void fragment() {
 	// Fake bottom AO
 	ALBEDO = ALBEDO * mix(1.0, 1.0 - u_bottom_ao, UV.y * UV.y);
 }
+
